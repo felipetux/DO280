@@ -1,0 +1,18 @@
+{
+  "kind": "ImageStream",
+  "apiVersion": "v1",
+  "metadata": {
+      "name": "go"
+  },
+  "spec": {
+    "tags": [
+      {
+        "name": "v1.0",
+        "from": {
+          "kind": "DockerImage",
+          "name": "workstation.lab.example.com:5000/openshift3/go-rhel7:v1.0"
+        }
+      }
+    ]
+  }
+}

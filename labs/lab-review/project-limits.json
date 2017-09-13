@@ -1,0 +1,37 @@
+{
+    "kind": "LimitRange",
+    "apiVersion": "v1",
+    "metadata": {
+        "name": "bookstore-project-limits"
+    },
+    "spec": {
+        "limits": [
+            {
+                "type": "Pod",
+                "max": {
+                    "cpu": "500m",
+                    "memory": "4Gi"
+                },
+                "min": {
+                    "cpu": "200m",
+                    "memory": "512Mi"
+                }
+            },
+            {
+                "type": "Container",
+                "max": {
+                    "cpu": "500m",
+                    "memory": "4Gi"
+                },
+                "min": {
+                    "cpu": "200m",
+                    "memory": "512Mi"
+                },
+                "default": {
+                    "cpu": "200m",
+                    "memory": "1.5Gi"
+                }
+            }
+        ]
+    }
+}

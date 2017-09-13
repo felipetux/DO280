@@ -1,0 +1,72 @@
+{
+    "kind": "List",
+    "apiVersion": "v1",
+    "metadata": { },
+    "items": [
+
+        {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+                "name": "quoteapp",
+                "labels": {
+                    "name": "quoteapp"
+                }
+            },
+            "spec": {
+                "containers": [
+                    {
+                        "name": "quoteapp",
+                        "image": "php-quote",
+                        "ports": [
+                            {
+                                "containerPort": 8080
+                            }
+                         ]
+                    }
+                ]
+            }
+        },
+
+        {
+            "kind": "Service",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "quoteapp",
+                "labels": {
+                    "name": "quoteapp"
+                }
+            },
+            "spec": {
+                "ports": [
+                    {
+                        "port": 80,
+                        "targetPort": 8080
+                    }
+                ],
+                "selector": {
+                    "name": "quoteapp"
+                }
+            }
+        },
+        
+        {
+            "apiVersion": "v1",
+            "kind": "Route",
+            "metadata": {
+                "name": "quoteapp",
+                "labels": {
+                    "name": "quoteapp"
+                }
+             },
+            "spec": {
+                "host": "quoteapp.cloudapps.lab.example.com",
+                "to": {
+                    "kind": "Service",
+                    "name": "quoteapp"
+                }
+            }
+        }
+
+    ]
+}

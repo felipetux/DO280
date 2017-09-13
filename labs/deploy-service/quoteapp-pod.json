@@ -1,0 +1,23 @@
+{
+  "apiVersion": "v1",
+  "kind": "Pod",
+  "metadata": {
+    "name": "quoteapp",
+    "labels": {
+        "name": "quoteapp"
+    }
+  },
+  "spec": {
+    "containers": [
+      {
+        "name": "quoteapp",
+        "image": "php-quote",
+        "ports": [
+          {
+            "containerPort": 8080
+          }
+        ]
+      }
+    ]
+  }
+}

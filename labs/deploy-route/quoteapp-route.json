@@ -1,0 +1,14 @@
+{
+    "apiVersion": "v1",
+    "kind": "Route",
+    "metadata": {
+        "name": "quoteapp"
+    },
+    "spec": {
+        "host": "quoteapp.cloudapps.lab.example.com",
+        "to": {
+            "kind": "Service",
+            "name": "quoteapp"
+        }
+    }
+}

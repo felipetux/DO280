@@ -1,0 +1,20 @@
+{
+    "apiVersion": "v1",
+    "kind": "PersistentVolume",
+    "metadata": {
+        "name": "bookstoredb-volume",
+        "labels": {
+            "application": "bookstore"
+        }
+    },
+    "spec": {
+        "capacity": {
+            "storage": "1Gi"
+        },
+        "accessModes": [ "ReadWriteOnce" ],
+        "nfs": {
+            "path": "/var/export/bookstoredbvol",
+            "server": "master.lab.example.com"
+        }
+    } 
+}

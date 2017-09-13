@@ -1,0 +1,51 @@
+{
+    "apiVersion": "v1",
+    "kind": "Pod",
+    "metadata": {
+        "name": "mysqldb",
+        "labels": {
+            "name": "mysqldb"
+        }
+    },
+    "spec": {
+        "containers": [
+            {
+                "name": "mysqldb",
+                "image": "openshift3/mysql-55-rhel7",
+                "ports": [
+                    {
+                        "containerPort": 3306
+                    }
+                ],
+                "env": [
+                    {
+                        "name": "MYSQL_USER",
+                        "value": "instructor"
+                    },
+                    {
+                        "name": "MYSQL_PASSWORD",
+                        "value": "password"
+                    },
+                    {
+                        "name": "MYSQL_DATABASE",
+                        "value": "instructor"
+                    }
+                ],
+                "volumeMounts": [
+                    {
+                        "name": "data",
+                        "mountPath": "/var/lib/mysql/data"
+                    }
+                ]
+            }
+        ],
+        "volumes": [
+            {
+                "name": "data",
+                "persistentVolumeClaim": {
+                    "claimName": "mysqldb-instructor-pvclaim"
+                }
+            }
+        ]
+    }
+}

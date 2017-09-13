@@ -1,0 +1,14 @@
+{
+  "apiVersion": "v1",
+  "kind": "Route",
+  "metadata": {
+    "name": "php-helloworld"
+  },
+  "spec": {
+    "host": "php-helloworld.cloudapps.lab.example.com",
+    "to": {
+      "kind": "Service",
+      "name": "php-helloworld"
+    }
+  }
+}

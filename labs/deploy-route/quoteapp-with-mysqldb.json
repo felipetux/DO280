@@ -1,0 +1,89 @@
+{
+    "kind": "List",
+    "apiVersion": "v1",
+    "metadata": { },
+    "items": [
+
+        {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+                "name": "mysqldb",
+                "labels": {
+                    "name": "mysqldb"
+                }
+            },
+            "spec": {
+                "containers": [
+                    {
+                        "name": "mysqldb",
+                        "image": "openshift3/mysql-55-rhel7",
+                        "ports": [
+                            {
+                                "containerPort": 3306
+                            }
+                        ],
+                        "env": [
+                            {
+                                "name": "MYSQL_USER",
+                                "value": "ose"
+                            },
+                            {
+                                "name": "MYSQL_PASSWORD",
+                                "value": "openshift"
+                            },
+                            {
+                                "name": "MYSQL_DATABASE",
+                                "value": "quotes"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+
+        {
+            "kind": "Service",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "quotedb"
+            },
+            "spec": {
+                "ports": [
+                    {
+                        "port": 3306,
+                        "targetPort": 3306
+                    }
+                ],
+                "selector": {
+                    "name": "mysqldb"
+                }
+            }
+        },
+
+        {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+                "name": "quoteapp",
+                "labels": {
+                    "name": "quoteapp"
+                }
+            },
+            "spec": {
+                "containers": [
+                    {
+                        "name": "quoteapp",
+                        "image": "php-quote",
+                        "ports": [
+                            {
+                                "containerPort": 8080
+                            }
+                         ]
+                    }
+                ]
+            }
+        }    
+    ]
+}
+
